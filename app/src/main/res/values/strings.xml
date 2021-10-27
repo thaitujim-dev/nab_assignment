@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">NNguyen_Assignment</string>
+    <string name="weather_screen_title">Weather Forecast</string>
+    <string name="no_content_description">No content description.</string>
+    <string name="get_weather">Get Weather</string>
+    <string name="input_city_hint">input city</string>
+    <string name="no_data_message">No Data...</string>
+    <string name="failure_network_connection">No Network Connection.</string>
+    <string name="failure_server_error">Server Error</string>
+    <string name="failure_input_min_three_characters">City name must greater than 3 characters</string>
+    <string name="action_refresh">Refresh</string>
+    <string name="forecast_date">"Date: %1$s"</string>
+    <string name="forecast_average_temperature">Average temperature: %1$s \u2103</string>
+    <string name="forecast_pressure">Pressure: %1$s</string>
+    <string name="forecast_humidity">Humidity: %1$s</string>
+    <string name="forecast_description">Description: %1$s</string>
 </resources>

@@ -2,14 +2,18 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.nnguyen_assignment">
 
+    <!--Permissions-->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
+        android:name=".MainApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:name=".MainApplication"
-        android:theme="@style/Theme.NNguyen_Assignment">
+        android:theme="@style/AppTheme">
 
         <activity android:name=".core.RouteActivity">
             <intent-filter>
@@ -19,7 +23,9 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".feature.MainActivity" />
+        <activity
+            android:name=".feature.retrieveweather.presentation.WeatherActivity"
+            android:label="@string/weather_screen_title" />
     </application>
 
 </manifest>

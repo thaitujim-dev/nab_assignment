@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="spacingXS">6dp</dimen>
+    <dimen name="spacingS">12dp</dimen>
+    <dimen name="spacingM">24dp</dimen>
+    <dimen name="spacingL">36dp</dimen>
+    <dimen name="spacingXL">48dp</dimen>
+</resources>

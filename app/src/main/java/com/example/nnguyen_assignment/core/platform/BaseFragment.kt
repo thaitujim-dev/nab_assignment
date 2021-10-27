@@ -27,7 +27,7 @@ import com.example.nnguyen_assignment.core.extension.appContext
 import com.example.nnguyen_assignment.core.extension.viewContainer
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.toolbar.*
+import kotlinx.android.synthetic.main.activity_layout.*
 
 /**
  * Base Fragment class with helper methods for handling views and back button events.
