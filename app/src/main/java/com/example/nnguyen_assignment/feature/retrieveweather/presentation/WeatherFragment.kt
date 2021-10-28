@@ -68,7 +68,7 @@ class WeatherFragment : BaseFragment() {
     private fun searchWeather() {
         showProgress()
         val text = inputCity.text.toString()
-        moviesViewModel.loadForecasts(text, 10)
+        moviesViewModel.loadForecasts(text)
         hideKeyboard()
     }
 

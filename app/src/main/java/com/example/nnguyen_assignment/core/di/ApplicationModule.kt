@@ -3,6 +3,10 @@ package com.example.nnguyen_assignment.core.di
 import com.example.nnguyen_assignment.BuildConfig
 import com.example.nnguyen_assignment.feature.retrieveweather.domain.ForecastRepository
 import com.example.nnguyen_assignment.feature.retrieveweather.repository.ForecastRepositoryImpl
+import com.example.nnguyen_assignment.feature.retrieveweather.repository.datasource.ForecastLocalDataSource
+import com.example.nnguyen_assignment.feature.retrieveweather.repository.datasource.ForecastLocalDataSourceImpl
+import com.example.nnguyen_assignment.feature.retrieveweather.repository.datasource.ForecastRemoteDataSource
+import com.example.nnguyen_assignment.feature.retrieveweather.repository.datasource.ForecastRemoteDataSourceImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -42,4 +46,13 @@ class ApplicationModule {
     fun provideMoviesRepository(forecastRepositoryImpl: ForecastRepositoryImpl): ForecastRepository =
         forecastRepositoryImpl
 
+    @Provides
+    @Singleton
+    fun provideForecastRemoteDataSource(forecastRemoteDataSourceImpl: ForecastRemoteDataSourceImpl): ForecastRemoteDataSource =
+        forecastRemoteDataSourceImpl
+
+    @Provides
+    @Singleton
+    fun provideForecastLocalDataSource(forecastLocalDataSourceImpl: ForecastLocalDataSourceImpl): ForecastLocalDataSource =
+        forecastLocalDataSourceImpl
 }

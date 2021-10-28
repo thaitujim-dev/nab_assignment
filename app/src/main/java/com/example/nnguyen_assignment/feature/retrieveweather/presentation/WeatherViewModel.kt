@@ -17,8 +17,8 @@ class WeatherViewModel @Inject constructor(val getForecastUseCase: GetForecastUs
     private val _forecasts: MutableLiveData<List<Forecast>> = MutableLiveData()
     val forecasts: LiveData<List<Forecast>> = _forecasts
 
-    fun loadForecasts(city: String, count: Int) {
-        val params = GetForecastUseCaseParams(city, count)
+    fun loadForecasts(city: String) {
+        val params = GetForecastUseCaseParams(city)
 
         getForecastUseCase(params, viewModelScope) {
             it.fold(::handleFailure, ::handleForecastList)

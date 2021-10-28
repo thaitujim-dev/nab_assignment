@@ -18,7 +18,7 @@ class GetForecastUseCase
 
     override suspend fun run(params: GetForecastUseCaseParams): Either<Failure, List<Forecast>> {
         return if (inputValidator.isInputValid(params.city)) {
-            forecastRepository.getForecast(params.city.trim(), params.count)
+            forecastRepository.getForecast(params.city.trim())
         } else {
             Either.Left(ForecastFailure.InputFailure())
         }
