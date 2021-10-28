@@ -35,20 +35,36 @@ class WeathersAdapter
             val formatter = SimpleDateFormat("EEE, d MMM yyyy", Locale.getDefault())
 
             itemView.apply {
-                textDate.text =
-                    context.getString(R.string.forecast_date, formatter.format(Date(forecast.dt)))
-                textTemp.text = context.getString(
+                context.getString(R.string.forecast_date, formatter.format(Date(forecast.dt))).let {
+                    textDate.text = it
+                    textDate.contentDescription = it
+                }
+                context.getString(
                     R.string.forecast_average_temperature,
                     forecast.temp.toAverageTemperature().roundToInt().toString()
-                )
-                textPressure.text =
-                    context.getString(R.string.forecast_pressure, forecast.pressure.toString())
-                textHumidity.text =
-                    context.getString(R.string.forecast_humidity, forecast.humidity.toString())
-                        .plus("%")
-                textDescription.text = context.getString(
+                ).let {
+                    textTemp.text = it
+                    textTemp.contentDescription = it
+                }
+
+                context.getString(R.string.forecast_pressure, forecast.pressure.toString()).let {
+                    textPressure.text = it
+                    textPressure.contentDescription = it
+                }
+
+                context.getString(R.string.forecast_humidity, forecast.humidity.toString())
+                    .plus("%").let {
+                    textHumidity.text = it
+                    textHumidity.contentDescription = it
+                }
+
+                context.getString(
                     R.string.forecast_description,
-                    forecast.weather.firstOrNull()?.description.orEmpty()
+                    forecast.weather.firstOrNull()?.description.orEmpty().let {
+                        textDescription.text = it
+                        textDescription.contentDescription = it
+                    }
+
                 )
             }
         }
