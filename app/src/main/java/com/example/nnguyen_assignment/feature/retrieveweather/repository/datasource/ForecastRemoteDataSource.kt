@@ -2,8 +2,8 @@ package com.example.nnguyen_assignment.feature.retrieveweather.repository.dataso
 
 import com.example.nnguyen_assignment.core.platform.RequestBuilder
 import com.example.nnguyen_assignment.feature.retrieveweather.domain.model.Forecast
+import com.example.nnguyen_assignment.feature.retrieveweather.repository.ForecastApi
 import com.example.nnguyen_assignment.feature.retrieveweather.repository.ForecastRepositoryImpl
-import com.example.nnguyen_assignment.feature.retrieveweather.repository.ForecastService
 import com.example.nnguyen_assignment.feature.retrieveweather.repository.entity.ForecastResponseEntity
 import javax.inject.Inject
 
@@ -12,7 +12,7 @@ interface ForecastRemoteDataSource {
 }
 
 class ForecastRemoteDataSourceImpl @Inject constructor(
-    private val forecastService: ForecastService
+    private val forecastService: ForecastApi
 ) :
     ForecastRemoteDataSource {
     override fun getForecast(city: String, count: Int): List<Forecast> {

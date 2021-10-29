@@ -9,12 +9,16 @@ import com.example.nnguyen_assignment.feature.retrieveweather.domain.model.Forec
 import com.example.nnguyen_assignment.feature.retrieveweather.presentation.InputValidator
 import javax.inject.Inject
 
-class GetForecastUseCase
+abstract class GetForecastUseCase : UseCase<List<Forecast>, GetForecastUseCaseParams>() {
+
+}
+
+class GetForecastUseCaseImpl
 @Inject constructor(
     private val inputValidator: InputValidator,
     private val forecastRepository: ForecastRepository
 ) :
-    UseCase<List<Forecast>, GetForecastUseCaseParams>() {
+    GetForecastUseCase() {
 
     override suspend fun run(params: GetForecastUseCaseParams): Either<Failure, List<Forecast>> {
         return if (inputValidator.isInputValid(params.city)) {

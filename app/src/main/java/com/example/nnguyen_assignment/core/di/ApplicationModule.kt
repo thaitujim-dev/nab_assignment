@@ -1,8 +1,14 @@
 package com.example.nnguyen_assignment.core.di
 
 import com.example.nnguyen_assignment.BuildConfig
+import com.example.nnguyen_assignment.core.platform.NetworkHandler
+import com.example.nnguyen_assignment.core.platform.NetworkHandlerImpl
 import com.example.nnguyen_assignment.feature.retrieveweather.domain.ForecastRepository
-import com.example.nnguyen_assignment.feature.retrieveweather.repository.ForecastRepositoryImpl
+import com.example.nnguyen_assignment.feature.retrieveweather.domain.usecase.GetForecastUseCase
+import com.example.nnguyen_assignment.feature.retrieveweather.domain.usecase.GetForecastUseCaseImpl
+import com.example.nnguyen_assignment.feature.retrieveweather.presentation.InputValidator
+import com.example.nnguyen_assignment.feature.retrieveweather.presentation.InputValidatorImpl
+import com.example.nnguyen_assignment.feature.retrieveweather.repository.*
 import com.example.nnguyen_assignment.feature.retrieveweather.repository.datasource.ForecastLocalDataSource
 import com.example.nnguyen_assignment.feature.retrieveweather.repository.datasource.ForecastLocalDataSourceImpl
 import com.example.nnguyen_assignment.feature.retrieveweather.repository.datasource.ForecastRemoteDataSource
@@ -55,4 +61,28 @@ class ApplicationModule {
     @Singleton
     fun provideForecastLocalDataSource(forecastLocalDataSourceImpl: ForecastLocalDataSourceImpl): ForecastLocalDataSource =
         forecastLocalDataSourceImpl
+
+    @Provides
+    @Singleton
+    fun provideNetworkHandler(networkHandler: NetworkHandlerImpl): NetworkHandler =
+        networkHandler
+
+    @Provides
+    @Singleton
+    fun provideCacheValidator(cacheValidatorImpl: CacheValidatorImpl): CacheValidator =
+        cacheValidatorImpl
+
+    @Provides
+    @Singleton
+    fun provideForecastService(forecastService: ForecastService): ForecastApi =
+        forecastService
+
+    @Provides
+    @Singleton
+    fun provideInputValidator(inputValidatorImpl: InputValidatorImpl): InputValidator =
+        inputValidatorImpl
+
+    @Provides
+    fun provideGetForecastUseCase(getForecastUseCaseImpl: GetForecastUseCaseImpl): GetForecastUseCase =
+        getForecastUseCaseImpl
 }

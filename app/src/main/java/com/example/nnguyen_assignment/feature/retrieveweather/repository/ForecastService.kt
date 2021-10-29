@@ -14,6 +14,6 @@ class ForecastService
         city: String,
         count: Int,
         appId: String,
-        unit: String
-    ) = forecastApi.getForecast(city, count, appId, unit)
+        units: String
+    ) = forecastApi.getForecast(city, count, appId, units)
 }

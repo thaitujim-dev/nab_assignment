@@ -1,7 +1,9 @@
 package com.example.nnguyen_assignment.feature.retrieveweather.repository.datasource
 
+import androidx.annotation.VisibleForTesting
 import com.example.nnguyen_assignment.core.exception.Exception
 import com.example.nnguyen_assignment.feature.retrieveweather.domain.model.Forecast
+import com.example.nnguyen_assignment.feature.retrieveweather.repository.CacheValidator
 import java.util.*
 import javax.inject.Inject
 
@@ -10,10 +12,11 @@ interface ForecastLocalDataSource {
     fun getCacheForecast(city: String): List<Forecast>
 }
 
-class ForecastLocalDataSourceImpl @Inject constructor() :
+class ForecastLocalDataSourceImpl @Inject constructor(private val cacheValidator: CacheValidator) :
     ForecastLocalDataSource {
 
-    private var _cache: LinkedHashMap<String, Pair<Long, List<Forecast>>> =
+    @VisibleForTesting
+    var cache: LinkedHashMap<String, Pair<Long, List<Forecast>>> =
         LinkedHashMap<String, Pair<Long, List<Forecast>>>()
 
     companion object {
@@ -25,26 +28,26 @@ class ForecastLocalDataSourceImpl @Inject constructor() :
     override fun cacheForecast(city: String, data: List<Forecast>) {
         val cacheForecast = Pair(Date().time, data)
         reduceCache()
-        _cache[city] = cacheForecast
+        cache[city] = cacheForecast
     }
 
     private fun reduceCache() {
-        if (_cache.size > MAX_SIZE_CACHE) {
-            _cache.keys.let { keys ->
+        if (cache.size > MAX_SIZE_CACHE) {
+            cache.keys.let { keys ->
                 for (i in 0..REDUCE_CACHE_SIZE)
-                    _cache.remove(keys.elementAt(i))
+                    cache.remove(keys.elementAt(i))
             }
 
         }
     }
 
     override fun getCacheForecast(city: String): List<Forecast> {
-        val cacheForecast = _cache[city]
+        val cacheForecast = cache[city]
         cacheForecast?.let {
-            if (Date().time - cacheForecast.first < CACHE_TIME_LIVE) {
+            if (cacheValidator.isCacheValid(cacheForecast.first)) {
                 return cacheForecast.second
             } else {
-                _cache.remove(city)
+                cache.remove(city)
                 throw Exception.NoneCacheException()
             }
         } ?: throw Exception.NoneCacheException()
