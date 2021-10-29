@@ -54,18 +54,17 @@ class WeathersAdapter
 
                 context.getString(R.string.forecast_humidity, forecast.humidity.toString())
                     .plus("%").let {
-                    textHumidity.text = it
-                    textHumidity.contentDescription = it
-                }
+                        textHumidity.text = it
+                        textHumidity.contentDescription = it
+                    }
 
                 context.getString(
                     R.string.forecast_description,
-                    forecast.weather.firstOrNull()?.description.orEmpty().let {
-                        textDescription.text = it
-                        textDescription.contentDescription = it
-                    }
-
-                )
+                    forecast.weather.firstOrNull()?.description.orEmpty()
+                ).let {
+                    textDescription.text = it
+                    textDescription.contentDescription = it
+                }
             }
         }
     }
