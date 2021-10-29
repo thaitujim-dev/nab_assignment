@@ -17,7 +17,8 @@ class ForecastRepositoryImpl @Inject constructor(
 ) :
     ForecastRepository {
     companion object {
-        const val APP_ID = "60c6fbeb4b93ac653c492ba806fc346d"
+        // HIDDEN
+        //const val APP_ID = "60c6fbeb4b93ac653c492ba806fc346d"
         const val UNIT = "metric"
         const val COUNT = 14
     }

@@ -1,5 +1,6 @@
 package com.example.nnguyen_assignment.feature.retrieveweather.repository.datasource
 
+import com.example.nnguyen_assignment.Secrets
 import com.example.nnguyen_assignment.core.platform.RequestBuilder
 import com.example.nnguyen_assignment.feature.retrieveweather.domain.model.Forecast
 import com.example.nnguyen_assignment.feature.retrieveweather.repository.ForecastApi
@@ -20,7 +21,7 @@ class ForecastRemoteDataSourceImpl @Inject constructor(
             call = forecastService.getForecast(
                 city,
                 count,
-                ForecastRepositoryImpl.APP_ID,
+                Secrets().getSecretKey("com.example.nnguyen_assignment"),
                 ForecastRepositoryImpl.UNIT
             ),
             transform = { it ->

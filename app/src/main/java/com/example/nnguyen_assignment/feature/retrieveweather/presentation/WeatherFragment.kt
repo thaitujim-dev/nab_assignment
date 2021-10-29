@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.annotation.StringRes
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,6 +18,7 @@ import com.example.nnguyen_assignment.core.extension.visible
 import com.example.nnguyen_assignment.core.platform.BaseFragment
 import com.example.nnguyen_assignment.feature.retrieveweather.domain.ForecastFailure
 import com.example.nnguyen_assignment.feature.retrieveweather.domain.model.Forecast
+import com.scottyab.rootbeer.RootBeer
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_weather.*
 import javax.inject.Inject
@@ -42,6 +44,12 @@ class WeatherFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initializeView()
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        checkRootDevice()
     }
 
     private fun initializeView() {
@@ -77,6 +85,17 @@ class WeatherFragment : BaseFragment() {
             val imm =
                 activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
             imm?.hideSoftInputFromWindow(view.windowToken, 0)
+        }
+    }
+
+    private fun checkRootDevice() {
+        context?.let {
+            if (RootBeer(context).isRooted) {
+                AlertDialog.Builder(it)
+                    .setMessage(getString(R.string.rooted_phone_warning))
+                    .setCancelable(false)
+                    .setPositiveButton(R.string.alert_ok) { _, _ -> }.show()
+            }
         }
     }
 

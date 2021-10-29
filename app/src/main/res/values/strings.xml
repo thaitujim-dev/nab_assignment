@@ -18,5 +18,7 @@
     <string name="forecast_description">Description: %1$s</string>
     <string name="no_data_description">No data is returned</string>
     <string name="the_forecast_list_description">The forecast list result</string>
+    <string name="alert_ok">OK</string>
+    <string name="rooted_phone_warning">Your device is rooted. you can continue to use app at your own risk.</string>
 
 </resources>
