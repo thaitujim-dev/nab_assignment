@@ -44,7 +44,7 @@ Code structure:
 5. Handle API fail and show up with UI View and simple toast
 6. Caching by In-Memory Cache, Cache will valid for 1 min, the maximum cache is 1000 cities. These values can configurable
 8. Secure Android App
- - Avoid Decompile APK By setting minifyEnabled and proguard
+ - Avoid Decompile APK By setting minifyEnabled and proguard. The idea is using proguard but I have some trouble with config so the release mode is not work well
  - Check rooted device and warning by RootBear library, User can continue to use at their own risk
  - Secure network with Https
  - Encryption for sensitive information by hiding API key with Native code by using klaxit.hiddensecrets to Hidden secret key
