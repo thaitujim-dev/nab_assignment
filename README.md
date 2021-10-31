@@ -57,4 +57,5 @@ Code structure:
   - Using NDK and CMake to compile the native library 
   - Import project and run
   - In case the project can not run. Using the APK in the Build folder to install and run
+  - The final APK is built and store in APK_Build folder
 
